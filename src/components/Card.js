@@ -11,12 +11,6 @@ function Card(props) {
           const target = entry.target;
           const previousSibling = target.previousSibling;
 
-          console.log("is Intersectiong", target.dataset.src);
-          console.log(
-            "is previousSibling Intersectiong",
-            previousSibling.dataset.srcset
-          );
-
           target.src = target.dataset.src;
           previousSibling.srcset = previousSibling.dataset.srcset;
           observer.unobserve(entry.target);
@@ -30,16 +24,13 @@ function Card(props) {
     return () => observer.disconnect();
   }, []);
 
-  console.log("/// card props ///");
-  console.log(props);
-
   const { webp, image, children } = props;
 
   return (
     <div className="Card text-center">
       <picture>
-        <source data-srcset={webp} type="image/not-support" />
-        <img data-src={image} alt="img" ref={imgRef} />
+        <source data-srcset={webp} type="image/webp" />
+        <img data-src={image} ref={imgRef} />
       </picture>
       <div className="p-5 font-semibold text-gray-700 text-xl md:text-lg lg:text-xl keep-all">
         {children}

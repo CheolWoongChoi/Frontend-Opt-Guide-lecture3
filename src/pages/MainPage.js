@@ -40,7 +40,7 @@ function MainPage(props) {
         <TwoColumns
           bgColor={"#f4f4f4"}
           columns={[
-            <TwoColumnsImage image={main_items} />,
+            <TwoColumnsImage image={main_items} webp={main_items_webp} />,
             <Meta
               title={"Items"}
               content={
@@ -60,14 +60,14 @@ function MainPage(props) {
               }
               btnLink={"/part"}
             />,
-            <TwoColumnsImage image={main_parts} />,
+            <TwoColumnsImage image={main_parts} webp={main_parts_webp} />,
           ]}
           mobileReverse={true}
         />
         <TwoColumns
           bgColor={"#f4f4f4"}
           columns={[
-            <TwoColumnsImage image={main_styles} />,
+            <TwoColumnsImage image={main_styles} webp={main_styles_webp} />,
             <Meta
               title={"Riding Styles"}
               content={

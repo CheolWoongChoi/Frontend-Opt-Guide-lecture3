@@ -8,8 +8,11 @@ export default function TwoColumnsImage(props) {
     const callback = (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log("is Intersectiong", entry.target.dataset.src);
-          entry.target.src = entry.target.dataset.src;
+          const target = entry.target;
+          const webpSource = target.previousSibling;
+
+          target.src = target.dataset.src;
+          webpSource.srcset = webpSource.dataset.srcset;
           observer.unobserve(entry.target);
         }
       });
@@ -21,5 +24,10 @@ export default function TwoColumnsImage(props) {
     return () => observer.disconnect();
   }, []);
 
-  return <img data-src={props.image} alt="two-columns-image" ref={imgRef} />;
+  return (
+    <picture>
+      <source data-srcset={props.webp} type="image/webp" />
+      <img data-src={props.image} ref={imgRef} />
+    </picture>
+  );
 }
